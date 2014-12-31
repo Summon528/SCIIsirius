@@ -1,0 +1,57 @@
+application: sciisirius
+version: beta-1-2-0-0
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+- url: /css
+  static_dir: Templates/css
+
+- url: /picture
+  static_dir: Templates/picture
+
+- url: /images
+  static_dir: Templates/images
+
+- url: /fonts 
+  static_dir: Templates/fonts
+
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+
+- url: /js
+  static_dir: Templates/js
+
+- url: /lib
+  static_dir: Templates/js/lib
+
+- url: /account/.*
+  script: account.application
+  secure: always
+
+- url: /admin/.*
+  script: admin.application
+
+- url: /.*
+  script: main.application
+  secure: never
+
+builtins:
+- deferred: on
+
+libraries:
+- name: jinja2
+  version: latest
+
+- name: PIL
+  version: latest
+
+- name: ssl
+  version: latest
+
+- name: webob
+  version: "1.2.3"

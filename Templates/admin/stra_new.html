@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{%block body %}
+
+<body>
+  <div id="container"  class="container">
+    <form method="post" enctype="multipart/form-data" action="{{upload_url}}" accept-charset="UTF-8">
+      Title: <input name="title" value="{{title}}">
+    <textarea  id='summernote' style='background-color: white;' name="content">{{content}}</textarea>
+    <br>
+          {% if upload_files_key %}
+          附件 (勾選已刪除)：
+             {% for i in range(0,upload_files_key.__len__()) %}
+              <input type="checkbox" name="del_blob{{i}}" value="{{upload_files_key[i]}}">
+              <a href="/admin/serve/{{upload_files_key[i]}}?name={{upload_files_name[i]}}" download>{{upload_files_displayname[i]}}</a>
+            {% endfor %}
+          {% endif %}
+    <br>
+    <input type="button" value="增加上傳欄位 (每筆不超過1MiB)" onclick="add_element(this)">檔案名稱可以不輸入<br>
+    {% if error == True %}
+    <div class="alert alert-danger" role="alert" id="submit">錯誤!!</div>
+    {% endif %}
+    <input type = "hidden" name="stra_id" value="{{stra_id}}">
+    <input type = "submit" id="submit"  >
+    {% if stra_id %}
+        <input type = "submit" name="delete" value="刪除">
+    {% endif %}
+</form>
+  </div>
+
+  <script type="text/javascript">
+  var element_count = 0;
+ 
+  function add_element(obj)
+  {
+    element_count++;
+    var space = document.createTextNode(" ");
+    var count = document.createTextNode("檔案名稱"+element_count+'： ');
+    var submit = document.getElementById('submit')
+    var new_element_file = document.createElement("input");
+    var new_element_text = document.createElement("input");
+    var new_element_hidden = document.createElement("input");
+    new_element_text.setAttribute("type","text");
+    new_element_file.setAttribute("onchange","get_filename"+'('+(element_count - 1)+')');
+    new_element_text.setAttribute("name","filename"+(element_count - 1));
+    new_element_file.setAttribute("id","filename"+(element_count - 1));
+    new_element_file.setAttribute("type","file");
+    new_element_file.setAttribute("name","file");
+    new_element_file.setAttribute("style","display: inline-block;");
+    new_element_hidden.setAttribute("type","hidden")
+    new_element_hidden.setAttribute("name","hidden_filename"+(element_count-1) )
+    new_element_hidden.setAttribute("id","hidden_filename"+(element_count-1) )
+    obj.form.insertBefore(count,submit);
+    obj.form.insertBefore(new_element_text,submit);
+    obj.form.insertBefore(space,submit);
+    obj.form.insertBefore(new_element_file,submit);
+    obj.form.insertBefore(new_element_hidden,submit);
+    var s = document.createElement("br");
+    obj.form.insertBefore(s,submit);
+  }
+
+  function get_filename (cnt) 
+  {
+    var fullPath = document.getElementById("filename"+cnt).value;
+    var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+    var filename = fullPath.substring(startIndex);
+    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+      filename = filename.substring(1);
+    }
+    var hidden=document.getElementById("hidden_filename"+cnt);
+    if (filename.match(/^[\w\d\s@\!#\$\^%&()+=\-\[\]\';,\.\{\}]+$/)){
+      hidden.value = filename;
+    }
+    else {
+      hidden.value = "Attachment" + filename.substring(filename.lastIndexOf('.'))
+    }
+  }
+    $(document).ready(function() {
+      $('#summernote').summernote();
+  });
+  </script>
+
+</body>
+{% endblock %}

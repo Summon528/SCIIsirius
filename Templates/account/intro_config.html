@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+  <div id="container" class="container">
+    <h1>更改個人資料</h1>
+    <div class="form">
+      <form role="form" method="post">
+        <div class="form-group">
+          <label class="control-label">自我介紹</label>
+          <textarea name="intro">{{intro}}</textarea>
+        </div>
+        {% if error == 1 %}
+          <div class="alert alert-danger" role="alert">錯誤</div>
+        {% endif  %}
+        <button type="submit" class="btn btn-default">送出</button>
+      </form>
+    </div>
+  </div>
+</body>
+{% endblock %}

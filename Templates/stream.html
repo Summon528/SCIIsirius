@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+
+  <div id="container" class="container">
+
+          <h1> {{title}} </h1>
+         
+          <div class="col-xs-8" id="stream">
+            <iframe id="banana" src="http://www.twitch.tv/{{stream_id}}/embed" height="500" width="100%" frameborder="0"></iframe>
+          </div>
+          <div class="col-xs-4" id="chat">
+            <iframe id="apple" src="http://www.twitch.tv/{{stream_id}}/chat?popout=" frameborder="0" scrolling="no" height="500" width="100%"></iframe>
+          </div>
+          <button type="button" onclick="Function()" class="btn btn-default">顯示/隱藏 聊天室</button> 
+          更新時間：{{refresh_stream}} (每五分鐘更新)
+          <div class="alert alert-success" role="alert">Online</div>
+          <div class="row">
+          {% for i in online %}
+           <div class="col-sm-5 col-md-2">
+              <div class="thumbnail">
+                <a href="/stream?stream_id={{i.twitch_id}}" class="thumbnail">
+                  <img src="{{i.img}}">
+                </a>
+                <div class="caption">
+                  {{i.name}} 
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          </div>
+          <div class="alert alert-warning" role="alert">Top5</div>
+          <div class="row">
+          {% for i in topfive %}
+           <div class="col-sm-5 col-md-2">
+              <div class="thumbnail">
+                <a href="/stream?stream_id={{i.twitch_id}}" class="thumbnail">
+                  <img src="{{i.img}}">
+                </a>
+                <div class="caption">
+                  {{i.name}} 
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          </div>
+          <div class="alert alert-danger" role="alert">Offline</div>
+          {% for i in offline %}
+           <a href="/stream?stream_id={{i.twitch_id}}"> {{i.name}} </a>
+          {% endfor %}
+  </div>
+
+  <script>
+function Function() {
+    if (document.getElementById("stream").className == "col-xs-8") {
+       document.getElementById("stream").className = "col-xs-12";
+       document.getElementById("apple").height = "0px";
+       document.getElementById("apple").width = "0px";
+       document.getElementById("banana").height = "600px";
+       document.getElementById("chat").className = "";
+       document.getElementById("chat").style.display = "none";
+    }
+    else {
+      document.getElementById("stream").className = "col-xs-8";
+       document.getElementById("apple").height = "500px";
+       document.getElementById("banana").height = "500px";
+       document.getElementById("apple").width = "100%";
+       document.getElementById("chat").className = "col-xs-4";
+      document.getElementById("chat").style.display = "inline";
+    }
+
+
+}
+</script>
+
+</body>
+{% endblock %}

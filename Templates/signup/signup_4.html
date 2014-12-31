@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+  <div id="container" class="container">
+    <h1>註冊完成！</h1>
+    <p>恭喜{{tag}}成功註冊。</p>
+    <p>目前你的會員組為"非隊員"</p>
+    <p>若你已經是SR隊員，請找幹部提升權限。</p>
+    <p>若你尚未入隊，請填寫<a href="/joinus_form">入隊表單</a>後上戰隊RC群組(ID:25708965)找幹部進行入隊訪談。</p>
+    <a class="btn btn-primary btn-lg" href="../">首頁</a>
+  </div>
+</body>
+{% endblock %}

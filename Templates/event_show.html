@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+     <div id="container" class="container">
+          <h1>SR vs {{event.opponent}}{{event.rank}}{{event.style}}</h1>
+          日期：{{event.date}}<br>
+          時間：{{event.time}}<br>
+          賽制：{{event.style}}<br>
+          階級：{{event.rank}}<br>
+          頻道：{{event.channel}}</a><br>
+          地圖：{{event.event_map}}<br>
+          已報名：<br>
+          <table class="table">
+          <thead>
+               <th>ID</th>
+               <th>種族</th>
+               <th>棒次</th>
+               <th>備註</th>
+          </thead>
+          <tbody>
+          {%  for i in event.regp  %}
+          {% if i.split('|')[0] %}
+          <tr>
+          <td>{{i.split('|')[0]}}</td><td>{{i.split('|')[2]}}</td><td>{{i.split('|')[1]}}</td><td>{{i.split('|')[3]}}</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+          </tbody>
+     </table>
+          <hr>
+          棒次：{{event.a}}<br>
+          候補：{{event.b}}
+          <hr>
+          比賽結果：<br>
+          {{event.detail_score | safe}}
+          <hr>
+          {{event.other|safe}}
+          <HR>
+          <!-- 我要報名 -->
+          {% if userstatus >= 3 %}
+          {% if  event.finished==False and not account.username in event.regn%}
+          <h1>我要報名</h1>
+          <form method="post">
+               {{account.game_name}}
+               棒次：<input name="num" value="隨">
+               Race：
+               <select name="race">
+                    <option {%  if account.race == 'ZERG' %}selected="true"{%endif%} value="ZERG">蟲族</option>
+                    <option {%  if account.race == 'PROTOSS' %}selected="true"{%endif%} value="PROTOSS">神族</option>
+                    <option {%  if account.race == 'TERRAN' %}selected="true"{%endif%} value="TERRAN">人類</option>
+                    <option {%  if account.race == 'RANDOM' %}selected="true"{%endif%} value="RANDOM">隨機</option>
+               </select>
+               其他：<input name="other">
+               <input type = "hidden" value="{{event.key()}}" name="key">
+               <input type="submit" value="報名">
+          </form>
+          {%elif event.finished==False and account.username in event.regn%}
+          <form method="post">
+               <input type = "hidden" value="{{event.key()}}" name="key">
+               <input type="submit" value="取消報名"> 
+          </form>
+          {% endif %}
+          {% if userstatus >= 6 %}
+          <a class="additional_text" href="/admin/event/modify?event_id={{event.key().id()}}">修改</a>
+          {% endif %}
+               {% if not event.finished and userstatus>=4 %}
+          <a class="additional_text" href="/admin/event/score?event_id={{event.key().id()}}">提交成績</a>
+               {% endif %}
+          {%endif%}
+     </div>
+</body>
+{% endblock %}

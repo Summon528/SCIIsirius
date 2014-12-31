@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block body %}
+  
+  <div id="container" class="container">
+    <h1> 公告區</h1>
+    <p> 
+      <ol>
+      {% for i in announces.run(offset=(page-1)*10,limit = 10) %}
+      <li><h3>{{i.title}}</h3></li>
+      create:{{i.create}} last_modify:{{i.modify}}<a href="/admin/announce/modify?ann_id={{i.key()}}">編輯</a>
+      <hr>
+      {% endfor %}
+      頁數 
+      {% for i in range (1,count+1) %}
+        <a href="/announce?page={{i}}"> {{i}} </a>
+      {% endfor %}
+    </ol>
+  </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+  <div id="container" class="container">
+    <h1>變更種族</h1>
+    <div class="form">
+      <form role="form" method="post">
+        <input type="radio" name="race" value="ZERG" {%if race=="ZERG"%} checked {%endif%}>蟲族
+        <input type="radio" name="race" value="PROTOSS" {%if race=="PROTOSS"%} checked {%endif%}>神族
+        <input type="radio" name="race" value="TERRAN" {%if race=="TERRAN"%} checked {%endif%}>人類
+        <input type="radio" name="race" value="RANDOM" {%if race=="RANDOM"%} checked {%endif%}>隨機
+        <input type="submit">
+      </form>
+              {% if error == 1 %}
+          <div class="alert alert-danger" role="alert">錯誤</div>
+        {% endif  %}
+    </div>
+  </div>
+</body>
+{% endblock %}

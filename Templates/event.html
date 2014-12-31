@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block body %}
+  
+  <div id="container" class="container">
+    <h1> 交流賽</h1>
+    <p> 
+      <ol>
+      {% for i in events %}
+          時間：{{i.date}} {{i.time}}<br>
+          對手： {{i.opponent}}<br>
+          階級：{{i.rank}}<br>
+          型式：{{i.style}}<br>
+          {% if  i.finished %}
+            結果：{{i.score}}
+          {% endif %}
+          <p class="additional_text"> <a href="/event_show?event_id={{i.key().id()}}"> 繼續閱讀</a></p>
+      <hr>
+      {% endfor %}
+      </ol>
+    </p>
+    <p> 
+    </p>
+  </div>
+{% endblock %}

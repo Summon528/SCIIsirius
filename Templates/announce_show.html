@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+  <div id="container" class="container">
+          <h1>{{announce.title}}</h1>
+          {% if userstatus>=4 %}<a  href="/admin/announce/modify?ann_id={{announce.key()}}"> 修改 </a> {% endif %}
+          <hr>
+          {{announce.content|safe}}
+  </div>
+</body>
+{% endblock %}

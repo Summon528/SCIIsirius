@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{%block body %}
+
+<body>
+  <div id="container" class="container">
+  	<form method="post">
+  		Title: <input name="title" value="{{title}}">
+		<textarea  id='summernote' style='background-color: white;' name="content">{{content}}</textarea>
+		{% if error == True %}
+		<div class="alert alert-danger" role="alert">錯誤!!</div>
+		{% endif %}
+    <input type = "hidden" value="{{ann_id}}">
+		<input type = "submit">
+
+</form>
+  </div>
+
+
+  <script>
+  	$(document).ready(function() {
+  		$('#summernote').summernote();
+	});
+  </script>
+
+</body>
+{% endblock %}

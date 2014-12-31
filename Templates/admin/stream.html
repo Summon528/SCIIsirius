@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{%block body %}
+<body>
+  <div id="container" class="container">
+  	<form method="post">
+ 		name  <input name="name"> 
+ 		twitchID  <input name="twitch_id"> 
+ 		<input type="submit" value="add">
+    {% if message %}
+ 		<div class="alert alert-warning" role="alert">錯誤</div>
+    {% endif %}
+ 	</form> 
+    {% for i in streams %}
+       {{i.name}} at {{i.twitch_id}} 
+       <form method="post" style="display: inline;">
+        <input type="hidden" name="twitch_key" value="{{i.key()}}">
+       	<input type="submit" value="刪除">
+        <br>
+       </form>
+    {% endfor %}
+  </div>
+</body>
+{% endblock %}

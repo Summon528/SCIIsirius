@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+  <div id="container" class="container">
+  <h1>個人戰績統計</h1>
+  <table class="table">
+    <thead>
+        <tr>
+          <th>排名</th>
+          <th>遊戲ID</th>
+          <th>帳號</th>
+          <th>勝場</th>
+          <th>敗場</th>
+          <th>勝率</th>
+          <th>種族</th>
+        </tr>
+      </thead>
+    <tbody>
+    {% for i in range(0,account.__len__()) %}
+    <tr 
+    {% if i==0 %}
+    class="danger"
+    {% elif i==1 %}
+    class="warning"
+    {% elif i==2 %}
+    class="success"
+            {%else%} class="active" 
+    {% endif %}
+    ><td>{{i+1}}</td><td>{{account[i][0]}}</td><td>{{account[i][1]}}</td><td>{{account[i][2]}}</td><td>{{account[i][3]}}</td><td>{{account[i][4]}}</td><td>{{account[i][5]}}</td><tr>
+    {%endfor%}
+  </tbody>
+  </table>
+  </div>
+</body>
+{% endblock %}

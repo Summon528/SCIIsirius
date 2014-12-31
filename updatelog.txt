@@ -1,0 +1,212 @@
+﻿update log
+beta-1-2-0-0
+新增入隊程序與入隊表單
+外觀修改
+新增首頁輪播圖片管理功能
+
+beta-1-1-2-1
+修改部分CSS顏色設定
+交流賽回報新增彈出視窗警告
+
+beta-1-1-2-0
+修復公告等區域超過10筆後 第二頁的編號會從一開始的BUG
+在戰術區增加附件上傳功能(支援多檔)
+INPUT 及 select的文字顏色改回黑色
+將 tr 的 danger warning info success active 字體改成黑色
+一軍排名在新視窗開啟
+比賽成績 改-->交流賽成績  link to /rank
+修正一些更改自己PO的戰術  討論 會出現的BUG
+討論區 及 戰術區  改成以最後留言排序
+在一些地方增加/event的連結
+更改關於網頁頁面
+修改 WALL 顏色
+修正手機板首頁的NAV BAR會被擋住的問題
+增加首頁 SLIDE SHOW 的觸控螢幕支援
+登入 註冊  現在在手機板上會顯示在同一行
+
+beta-1-1-1-0
+修復不能改大頭貼的BUG
+修復更新BNET資料  如果新的帳號完全跟之前的不一樣 會出現錯誤的BUG
+介面排版大幅修改
+取消了small-stlye的css設定
+
+beta-1-0-2-1
+留言系統會正常防止全形及半形空白混雜的留言
+HTML編輯器  新增 CODE VIEW 模式
+增加天梯排名11~20 顯示藍色
+修復天梯排名以及交流賽排名  ID依樣可能會產生的錯誤
+增加天梯排名計數器
+降低DB READ 數量
+增加戰術區
+修復討論區如果達到10篇 會出現一頁空白的問題
+修復直播頁面TOP如果回傳不到五個可能會發生的問題
+現在進入首頁之後 會默默在背後載入天梯排名頁面
+增加 管理 職位
+修復 討論區 發布討論後 會回到戰術區的問題
+
+beta-1-0-1-1
+現在可以正常顯示連續空白(留言)
+修復admin BUG
+現在不能留空白字串
+取消帳戶設置的 GET 裡的 KEY
+
+beta-1-0-1-0
+討論區推文部分外觀修正
+
+1-0-0-0-beta
+討論區外觀修改
+許願:
+  大頭貼圖片連結
+戰隊簡介更新
+
+4-3-0-dev
+ 討論區新增
+ 
+4-2-0-dev
+條列式型的交流賽葉面
+移除公告管理(在所有有關公告的葉面可以編輯)
+隱藏大部份沒有全線的廉節
+修改繼續閱讀的位置
+權限調整
+
+4-1-0-dev
+modify something about down navbar
+add a ladder_rank page
+
+4-0-2-dev
+個人頁面排版優化
+許願：
+-個人資料修改
+-帳號資料修改
+-個人頁面需求帳號職位
+
+
+4-0-1-dev
+新增了class .addtional_text 用作控制附加文字(ex:繼續閱讀、記住我)大小
+交流賽資訊頁面排版修改
+<p>標籤現在首行會自動縮排
+關於網頁頁面的內容修改
+
+4-0-0-dev
+暫時改回原本的介面
+流量大幅優化(圖片放ONEDRIVE  (密碼比google多一個0  其他都一樣))
+降低大頭貼占用流量(大小縮小 gif圖片無法撥放)
+降低個人頁面天梯階級出現none的機率
+修復即使未勾選「記住我」也會被記住的BUG	
+修復其他bug
+增加取消報名交流賽
+新增 關於我們 葉面
+Html 編輯器中文化
+現在不能以同一個BNET帳號註冊了
+一些外觀的更動 (公告區 排名區)
+一些成功畫面的更動
+字體放大
+(我們即將進入BETA)
+
+
+3-8-2-dev
+整理了navbar的內容
+
+3-8-1-dev
+ 外觀改採用偽扁平設計
+ 隊員名單改以表格方式呈現
+
+3-5-2-dev
+-newfeature
+-backend
+ 首頁排版更新
+ 直播台連結外觀優化
+ 首頁下拉選單內容改為中文
+ *3-5-1 updatelog吃光光
+
+3-5-0-dev
+-newfeature
+ calendar
+-bugfixed
+
+3-4-1-dev
+-newfeature
+ 新增公告系統
+*3-4-0 上傳失敗
+
+3-3-2-dev
+-backend
+ 修正了置底navbar會擋到頁面內容的問題
+ 註冊頁面外觀優化
+ 驗證信件內容改為中文
+
+3-3-1-dev
+-newfeature
+ stream now support mobile
+
+3-3-0-dev
+-newfeature
+ 現在可以刪除直播台
+ 增加streamLOGO & TOP5 & title
+ add profile page
+-backend
+ /admin/STREAM 程式碼大幅修改
+
+3-2-0-dev
+-newfeature
+ add something about stream
+ 
+3-1-0-dev
+-newfeature
+ List of member
+ the db will now store game_name and race
+
+3-0-1-dev
+-bugfixed
+ 修復/account之後  大頭貼消失
+ 現在郵件驗證網址 只會在驗證完BNET之後失效
+ 進入驗證網址後  不再顯示登入
+ You will be redirect to the homepage when you go to the login page after you login
+-backend
+ delete test file
+
+3-0-0-dev
+-newfeature
+ import battle net api
+-somechanges
+ Change some apprence
+-bugfix
+ Fix the submit button in the signup form while sometime it disapper
+
+
+2-0-1-dev
+-bugfixed
+ 修正某些404頁面無法顯示圖片或CSS
+ 修正表單錯誤時 系統崩潰
+ 修正手機板登入後 按下NAVBAR選單 反而顯示上方的選單
+
+2-0-0-dev
+-newfeature
+ 手機版上線
+  現在在任何地方都會顯示下nav
+-bugfixed
+ 修復未驗證EMAIL仍可以登入的BUG
+ 增加大頭貼上限註解
+  
+1-1-0-dev
+-newfeature
+ 增加網頁圖示
+ 增加信箱驗證系統
+ 增加大頭貼系統
+ 註冊表單自動清除時將顯示橘色外框
+
+1-0-3-dev
+-backend
+ Delete Junk		
+
+1-0-2-dev
+-bugfixed
+ 使用者系統採用https加密
+
+1-0-1-dev
+-bugfixed
+ 修復註冊表單輸入錯誤時 遊戲ID、角色代碼不會恢復的問題
+
+1-dev
+-newfeature
+ 網頁上線

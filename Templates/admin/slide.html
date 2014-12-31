@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{%block body %}
+<body>
+  <div id="container" class="container">
+  <form method="post">
+  	<input name="url">
+  	<input type="submit">
+  	<SELECT name="index">
+{% for i in range(0,slides.__len__()) %}  	
+  		<option {% if i==index %} selected="True" {% endif %} >{{i}}</option>
+ {% endfor %}
+  	</SELECT>
+  </form>
+  {% if success %}
+  <div class="alert alert-success" role="alert">成功!!</div>
+  {% endif %}
+  <ol start="0">
+  {% for i in range(0,slides.__len__()) %}
+  <li><a href="{{slides[i]}}" target="_blank">{{slides[i]}}<i class="fa fa-external-link"></i></a>  
+  <form method="post" style="display: inline;">
+        <input type="hidden" name="slide_index" value="{{i}}">
+       	<input type="submit" value="刪除">
+        <br>
+       </form> </li>
+  {% endfor %}
+  </ol>
+  </div>
+</body>
+{% endblock %}

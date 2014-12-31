@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block body %}
+<script>
+	$(document).ready(function() {
+		$('#calendar').fullCalendar({
+			theme: true,
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			eventLimit: true, // allow "more" link when too many events
+			events: [
+				{% for i in events %}
+				{	
+					title: '{{i.opponent}}',
+					rank:"{{i.rank}}",
+					{% if i.finished %}
+					format:"{{i.score}}",
+					{% else %}
+					format:"{{i.style}}",
+					{% endif %}
+					url: '/event_show?event_id='+'{{i.key().id()}}',
+					start: '{{i.date}}'+'T'+'{{i.time}}'.substring(0,2)
+				},
+				{% endfor %}
+				{
+					start: '2000-01-01T00:00'
+				}
+			]
+		});
+		
+	});
+
+</script>
+
+<body>
+
+<div id='container' class="container"><div id="calendar"></div></div>
+</body>
+{% endblock %}

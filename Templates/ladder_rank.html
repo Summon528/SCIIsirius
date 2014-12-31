@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+  <div id="container" class="container">
+  <h1>天梯統計</h1>{{refresh_ladder}}(半小時更新)
+  <table class="table">
+    <thead>
+        <tr>
+          <th>排名</th>
+          <th>遊戲ID</th>
+          <th>階級</th>
+          <th>勝場</th>
+          <th>敗場</th>
+          <th>種族</th>
+        </tr>
+      </thead>
+    <tbody>
+    {% for i in range(0,ladder[0].__len__()) %}
+    <tr {% if i<2 %}class="danger"{% elif i<5 %}class="warning"{% elif i<10 %}class="success"{% elif i<20 %} class="info" {%else%} class="active" {% endif %}>
+    <td>{{i+1}}</td><td>{{ladder[0][i][1]}}</td><td>{{ladder[0][i][6]}}</td><td>{{ladder[0][i][4]}}</td><td>{{ladder[0][i][5]*-1}}</td><td>{{ladder[0][i][7]}}</td></tr>
+    {%endfor%}
+  </tbody>
+  </table>
+      <br>
+    無階/錯誤：{{ladder[1][0]}}
+    青銅：{{ladder[1][1]}}
+    白銀：{{ladder[1][2]}}
+    黃金：{{ladder[1][3]}}
+    白金：{{ladder[1][4]}}
+    鑽石：{{ladder[1][5]}}
+    大師：{{ladder[1][6]}}
+    宗師：{{ladder[1][7]}}
+    <br>
+    蟲族：{{ladder[2]["ZERG"]}}
+    神族：{{ladder[2]["PROTOSS"]}}
+    人類：{{ladder[2]["TERRAN"]}}
+    隨機：{{ladder[2]["RANDOM"]}}
+  </div>
+</body>
+{% endblock %}

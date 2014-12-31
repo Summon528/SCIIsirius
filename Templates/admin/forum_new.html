@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{%block body %}
+
+<body>
+  <div id="container" class="container">
+  	<form method="post">
+    		Title: <input name="title" value="{{title}}">
+  		<textarea  id='summernote' style='background-color: white;' name="content">{{content}}</textarea>
+  		{% if error == True %}
+  		<div class="alert alert-danger" role="alert">錯誤!!</div>
+  		{% endif %}
+      <input type = "hidden" name="forum_id" value="{{forum_id}}">
+  		<input type = "submit">
+      {% if forum_id %}
+          <input type = "submit" name="delete" value="刪除">
+      {% endif %}
+    </form>
+  </div>
+
+
+  <script>
+  	$(document).ready(function() {
+  		$('#summernote').summernote();
+	});
+  </script>
+
+</body>
+{% endblock %}

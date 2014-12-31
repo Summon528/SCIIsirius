@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{%block body %}
+<body>
+  <div id="container" class="container">
+  <a href="https://github.com/Summon528/SCIIsirius"><img style="position: absolute; right: 0%;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+	<h1>關於網頁</h1>
+	<p class="new_section">
+	你好！謝謝你瀏覽我們的網站，如果使用上發生任何問題、或想提供任何建議。<br />
+	可以寄信到以下網址<a href="mailto:SCIIClanSR@gmail.com">SCIIClanSR@gmail.com</a>、在下面的表單提交建議、
+	或者聯絡戰隊網編[SR]湖畔邊的萌雨。<br>
+	You can also fork us on <a href="https://github.com/Summon528/SCIIsirius" target="_blank">GitHub</a> if you want to.<br>
+	祝您能夠順利的享用網頁所提供的服務！<br />
+	SR戰隊網站開發團隊 [SR]Summon、[SR]湖畔邊的萌雨 敬上
+	</p>
+	<hr>
+
+	<h2>常見問題</h2>
+	Q1.為什麼我的天梯排名顯示錯誤？<br>
+	A1.可能的原因是因為你改過ID，只要登入後選擇帳戶設置-->更新battlenet資料即可。<br>
+	Q2.忘記密碼了，怎麼辦？<br>
+	A2.我們尚未新增找回密碼的功能。請聯絡網頁人員。<br>
+	Q3.為什麼戰術討論區上傳的檔案，下載回來是Attachment.*？<br>
+	A3.系統並不支援中文(或其他非<a href="http://zh.wikipedia.org/wiki/ASCII" target="blank">ANSCII</a>字元)的檔案名稱，系統將自動將中文檔名改名，如果傳送的是英文檔名，就不會有這個問題。
+	<hr>
+	{% if success %}
+		<div class="alert alert-success" role="info">謝謝你！我們會盡快回復！</div>
+	{% else %}
+	<h2>聯絡我們<small>如果允許 我們將回信給你</small></h2>
+	<form method="post">
+	標體：<input name="title">
+	{% if not logged_in %}
+	你的EAMIL：<input name="email">
+	{% endif %}
+	<textarea  id='summernote' style='background-color: white;' name="content"></textarea>
+	<input type="submit">
+	 <script type="text/javascript">
+    $(document).ready(function() {
+      $('#summernote').summernote();
+  });
+  </script>
+  {% endif %}
+  </div>
+</body>
+{% endblock %}

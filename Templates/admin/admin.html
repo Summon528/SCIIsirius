@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{%block body %}
+<body>
+  <div id="container" class="container">
+  	<h1>你的身分是{{status}}</h1>
+  	{% if userstatus >=4 %}
+	<a href="/admin/stream" class="btn btn-primary btn-lg" role="button">直播台管理</a><br><br>
+    <a href="/admin/slide" class="btn btn-primary btn-lg" role="button">首頁輪播圖片管理</a><br><br>
+    		{% if userstatus >=7 %}
+		<a href="/admin/list" class="btn btn-primary btn-lg" role="button">戰隊人事管理</a><br><br>
+		{% endif %}
+	<a href="/admin/announce/new" class="btn btn-primary btn-lg" role="button">新增公告</a><br><br>
+	{% if userstatus >=6 %}
+	<a href="/admin/event/new" class="btn btn-primary btn-lg" role="button">新增活動</a>
+	{% endif %}
+	{% endif %}
+  </div>
+</body>
+{% endblock %}

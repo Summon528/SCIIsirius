@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh_tw">
+<head>
+  <title>Clan SR 天狼星戰隊</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+  <link rel="stylesheet" href="/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <script src="/js/jquery.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <script src="/js/jquery.mobile.custom.min.js"></script>
+  <link href="/css/summernote.css" rel="stylesheet">
+  <script src="/js/summernote.js"></script>
+  <link rel='stylesheet' href='../lib/cupertino/jquery-ui.min.css' />
+  <link href='/css/fullcalendar.css' rel='stylesheet' />
+  <link href='/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+  <script src='/lib/moment.min.js'></script>
+  <script src='/js/fullcalendar.js'></script>
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />  
+</head>
+<body>
+  <header>
+    <div id="navbar">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="/">首頁</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">討論區<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/forum?page=1">哈啦區</a></li>
+                  <li><a href="/stra?page=1">戰術討論區</a></li>
+                  <li><a href="/announce?page=1">戰隊公告</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">排行榜<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/ladder_rank">天梯成績</a></li>
+                  <li><a href="/rank">交流賽成績</a></li>
+                  <li><a href="http://nios.kr/sc2/kr/clan/detail/SR" target="blank">一軍排名 <i class="fa fa-external-link"></i></a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">直播與比賽<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/calendar">行事曆</a></li>
+                  <li><a href="/event">交流賽</a></li>
+                  <li><a href="/stream">直播台</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">戰隊事務<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li class="disabled"><a href="#">戰隊規範</a></li>
+                  <li><a href="/calendar">行事曆</a></li>
+                  <li><a href="/list">隊員名單</a></li>
+                </ul>
+              </li>
+              <li><a href="/joinus">加入我們</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">友台連結<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="http://sc2clan.tw/bbs/forum.php?mod=forumdisplay&fid=88" target="blank">戰隊星盟論壇 <i class="fa fa-external-link"></i></a></li>
+                  <li><a href="https://www.facebook.com/Clan.Sirius.SR?fref=ts" target="blank">粉絲團 <i class="fa fa-external-link"></i></a></li>
+                </ul>
+              </li>
+              <li><a href="/about">關於網頁</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </div>
+    <div id="header">
+      <div id="logo" class="container">
+      </div>
+    </div>
+  </header>
+{% block body %}
+{% endblock %}
+
+{% if logged_in == True %}
+  <nav class="navbar-inverse navbar-fixed-bottom" role="navigation">
+    <div class="container-fluid container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src="/account/img?img_id={{img_id}}" vspace="5" height="40" width="40"></img>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+        
+        <p class="navbar-text">你好，<a href="/account/profile?uid={{username}}" class="navbar-link">{{username}}</a></p>
+        <ul class="nav navbar-nav navbar-left">
+        {% if userstatus>=4 %}
+          <li><a href="/admin/">管理</a></li>
+          {% endif %}
+        {% if userstatus==2 %}
+          <li><a href="/admin/">入隊</a></li>
+          {% endif %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">帳戶設置<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/account/img_config">修改大頭貼</a></li>
+              <li><a href="/account/intro_config">修改個人資料</a></li>
+              <li><a href="/account/pass_config">修改密碼</a></li>
+              <li><a href="/account/race_config">修改種族</a></li>
+              <li><a href="/account/connect_again">更新Battle.net資料</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form action="/account/logout">
+          <input type="submit" class="btn btn-default navbar-btn navbar-right" value="登出">
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+{% else %}
+  <nav class="navbar-inverse navbar-fixed-bottom" role="navigation">
+    <div class="container-fluid container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src="/picture/default.jpg" vspace="5" height="40" width="40"></img>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+        <p class="navbar-text">你好，訪客</a></p>
+          <a href="/account/signup" class="btn btn-default navbar-btn navbar-right" role="button">註冊</a>
+          <a href="/account/login" class="btn btn-default navbar-btn navbar-right" role="button">登入</a>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+{% endif %}
+
+</html>

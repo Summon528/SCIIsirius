@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+  <div id="container" class="container">
+  	<form method="post">
+  	{% for i in accounts %}
+  		{%  if i.status >=   2 and i.status != 10%}
+			<select name={{i.key()}}> 
+				 <option {%  if i.status == 2 %}selected="true"{%endif%} value="2">非隊員</option>
+				 <option {%  if i.status == 3 %}selected="true"{%endif%} value="3">隊員</option>
+				 <option {%  if i.status == 4 %}selected="true"{%endif%} value="4">文書</option>
+				 <option {%  if i.status == 5 %}selected="true"{%endif%} value="5">領隊</option>
+				 <option {%  if i.status == 6 %}selected="true"{%endif%} value="6">公關</option>
+				 <option {%  if i.status == 7 %}selected="true"{%endif%} value="7">人事</option>
+				 <option {%  if i.status == 8 %}selected="true"{%endif%} value="8">副隊長</option>
+				 <option {%  if i.status == 9 %}selected="true"{%endif%} value="9">隊長</option>	 
+			</select>
+			{{i.game_name}} ({{i.username}})
+			<br>
+		{% endif %}
+  	{%endfor%}
+  	<input type="submit">
+  	</form>
+  	{% if success == True %}
+  		<div class="alert alert-success" role="alert">Success!</div>
+  	{% endif %}
+  </div>
+</body>
+{% endblock %}

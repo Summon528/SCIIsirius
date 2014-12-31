@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block body %}
+  
+  <div id="container"  class="container">
+    <h1> 公告區</h1>
+    <p> 
+     <ol start="{{(page-1)*10+1}}">
+      {% for i in announce %}
+        <li><h3><a href="/announce?ann_id={{i[3]}}">{{i[0]}}</a></h3></li>
+        <p class="additional_text">建立時間：{{i[1]}} 最後修改：{{i[2]}} 
+        {% if userstatus>=4 %}<a  href="/admin/announce/modify?ann_id={{i[4]}}"> 修改 </a> {% endif %}
+        </p>
+        <hr>
+      {% endfor %}
+      </ol>
+    </p>
+    <p>
+      <nav>
+        <ul class="pagination">
+        {% if page > 1 %}
+        <li><a href="/announce?page={{page-1}}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+        {% endif %}
+      {% for i in range (1,count+1) %}
+          <li
+            {% if i == page %}
+              class="active"
+            {% endif %}
+          ><a href="/announce?page={{i}}"> {{i}} </a></li>
+      {% endfor %}
+        <li><a href="/announce?page={{page+1}}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+        </ul>
+      </nav>
+    </p>
+  </div>
+{% endblock %}

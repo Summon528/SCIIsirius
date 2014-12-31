@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+  <div id="container" class="container" >
+          <h1>{{forum.title}}</h1>
+          {{forum.author}}
+          {% if username==forum.author.split('(')[1][:-1]  or userstatus==10  %}<a  href="/admin/forum/modify?forum_id={{forum.key()}}"> 修改 </a> {% endif %}
+          <hr>
+          {{forum.content|safe}}
+          <hr>
+          {% for i  in range(0,forum.message.__len__()) %}
+          <div class="media 
+          {% if forum.message_style[i] == -1 %}
+          alert-danger
+          {% elif forum.message_style[i] == 1 %}
+          alert-success
+          {% else %}
+          alert-info
+          {% endif %}">
+          <div class="media-left media-middle">
+               
+        <img src="/account/img_53?img_id={{forum.message_img[i]}}" alt="{{forum.message_author[i]}}"  style="width: 53px; height: 53px;">
+      </div>
+           <div class="media-body">
+             <span class="media-heading.h4">{{forum.message_author[i]}}</span> <small>{{forum.message_time[i]}}</small><br>
+              {{forum.message[i] | safe }}
+            </div>
+       </div>
+          {% endfor %}
+          <h2>留言</h2>
+          {% if userstatus >= 3 %}
+          上限50個字<br>
+          <form method="POST">
+               <div class="input-group">
+                    <input name="message" type="text" class="form-control" value={{message}}></input>
+                    <span class="input-group-addon">
+                         <input type="radio" name="style" value="1">推 </input>
+                         <input type="radio" name="style" value="0" checked>-> </input>
+                         <input type="radio" name="style" value="-1">噓 </input>
+                         <input type="hidden" value="{{forum.key()}}" name="forum_key">
+                         <input type="submit" value="送出">
+                    </span>
+               </div>
+          </form>
+          {% if error==1 %}
+          <div class="alert alert-danger" role="alert">錯誤，你輸入太多東西了。</div>
+          {% elif error == 2 %}
+          <div class="alert alert-danger" role="alert">錯誤，你覺得空白有意義嗎？</div>
+          {% endif %}
+          {% endif %}
+  </div>
+</body>
+{% endblock %}

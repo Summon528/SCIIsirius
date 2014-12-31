@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+  <div id="container" class="container">
+  	  	<h1>{{profileuser}}<small>{{status}}</small></h1><br>
+  	  	<img src="/account/img_org?img_id={{profile_img_id}}" height="80" width="80" alt="大頭貼">
+  	  	<HR>
+		自我介紹：<br>
+		<div class="well">
+			{{intro}}
+		</div>
+		<HR>
+		{% if error %}
+			Battle.net資料讀取錯誤 (可能是更改名字造成的)<br>
+			請帳號持有人至帳戶設置更新<br>
+		{% endif %}
+		<table class="table">
+
+			{% if not error %}
+			<tr>
+				<td>遊戲名稱 {{displayName}}</td>
+				<td>種族 {{primaryRace}}</td>
+				<td>生涯最高階級 {{highest1v1Rank}}</td>
+			</tr>
+			<tr>
+				<td>上季階級 {{previousSeasonleague}}</td>
+				<td>上季排名 {{previousSeasonrank}}</td>
+				<td>上季勝場 {{previousSeasonwins}}</td>
+				<td>上季敗場 {{previousSeasonlosses}}</td>
+			</tr>
+			<tr>
+				<td>本季階級 {{Seasonleague}}</td>
+				<td>本季排名 {{Seasonrank}}</td>
+				<td>本季勝場 {{Seasonwins}}</td>
+				<td>本季敗場 {{Seasonlosses}}</td>
+			</tr>
+			{% endif %}
+			<tr>
+				<td>交流賽勝場 {{win}}</td>
+				<td>交流賽敗場 {{loss}}</td>
+				<td>交流賽勝率 {{rate}}%</td>
+			</tr>
+		</table>
+		<br>
+		註冊時間 {{date}}<br>
+		<a href="http://tw.battle.net/sc2/zh{{profilePath}}" target="blank">玩家資訊頁面</a><br>
+		<HR>
+		{% if img_id == profile_img_id %}
+		<a class="btn btn-primary btn-lg" href="/account/img_config">修改圖片</a>
+		<a class="btn btn-primary btn-lg" href="/account/intro_config">修改自我介紹</a>
+		<a class="btn btn-primary btn-lg" href="/account/pass_config">修改密碼</a>
+		<a class="btn btn-primary btn-lg" href="/account/race_config">修改種族</a>
+		<a class="btn btn-primary btn-lg" href="/account/connect_again">更新Battle.net資料</a>
+		{% endif %}
+  </div>
+</body>
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+  <div id="container" class="container">
+    <h1>第一步-基本資料設定</h1>
+    <div class="form">
+      <form role="form" method="post"  enctype="multipart/form-data">
+        <div class="form-group {{user_ok}}">
+          <label class="control-label">*帳號(3~20個英數字元含dash underscore)</label>
+          <input type="text" class="form-control" placeholder="User Name" name="username" value="{{username}}">
+        </div>
+        <div class="form-group {{pass_ok}}">
+          <label class="control-label">*密碼(3~20個字元)</label>
+          <input type="password" class="form-control" placeholder="Password" name="password">
+        </div>
+        <div class="form-group {{verify_ok}}">
+          <label class="control-label ">*確認密碼</label>
+          <input type="password" class="form-control" placeholder="Verify password" name="verify">
+        </div>
+        <div class="form-group {{email_ok}}">
+          <label class="control-label">*電子郵件</label>
+          <input  class="form-control" placeholder="Enter email" name="email" value="{{email}}">
+        </div>
+        <div class="form-group {{image_ok}}">
+          <label class="control-label">上傳一張大頭貼  .gif/.jpeg/.bmp/.png   (<1MiB)</label>
+          <input type="file" multiple accept='image/*'  name="image">
+        </div>
+        <div class="form-group ">
+          <label class="control-label">自我介紹</label>
+          <textarea class="form-control textareasize" rows="3" name="intro">{{intro}}</textarea>
+        </div>
+        {% if error == 1 %}
+          <div class="alert alert-danger" role="alert">有東西出錯了  (橘色為自動清空  請重填)</div>
+        {% endif %}
+        <button type="submit" class="btn btn-default">送出</button>
+      </form>
+    </div>
+    </div>
+  </div>
+</body>
+{% endblock %}
