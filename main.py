@@ -21,8 +21,7 @@ def get_stream():
 	online = memcache.get("online")
 	offline = memcache.get("offline")
 	refresh_stream = memcache.get("refresh_stream")
-	if not (topfive and online and offline ):
-
+	if not topfive:
 		stream = db.GqlQuery("SELECT * FROM Stream")
 		online = []
 		offline = []
@@ -40,14 +39,14 @@ def get_stream():
 			else:
 				offline.append(i)
 		j = json.loads(urlfetch.fetch('https://api.twitch.tv/kraken/search/streams?limit=5&q="StarCraft+II:+Heart+of+the+Swarm"').content)
-		for i in range(0,len(j['streams'])): 
-			if j['streams'][i]['channel']['logo']:
-				img =j['streams'][i]['channel']['logo']
+		for i in j['streams']: 
+			if i['channel']['logo']:
+				img =i['channel']['logo']
 			else:
 				 img = "/picture/stream.png"
-			topfive.append(Stream(name=j['streams'][i]['channel']['name'],
-								  img = img,
-								  twitch_id = j['streams'][i]['channel']['name']))
+			topfive.append({"name" : i['channel']['name'],
+								  "img" : img,
+								  "twitch_id" : i['channel']['name']})
 
 		refresh_stream = datetime.datetime.now() + timedelta(hours = 8)
 		memcache.set(key="refresh_stream", value=refresh_stream, time=300)
@@ -336,7 +335,7 @@ class stream(Handler):
 			title = j['stream']['channel']['status']
 		else:
 			title = "This Channel is offline"
-
+		self.write(topfive)
 		self.render_nav ("stream.html", stream_id=stream_id, online=online, refresh_stream = refresh_stream,
 										offline=offline, topfive = topfive, title=title)
 
