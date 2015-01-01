@@ -335,7 +335,6 @@ class stream(Handler):
 			title = j['stream']['channel']['status']
 		else:
 			title = "This Channel is offline"
-		self.write(topfive)
 		self.render_nav ("stream.html", stream_id=stream_id, online=online, refresh_stream = refresh_stream,
 										offline=offline, topfive = topfive, title=title)
 
