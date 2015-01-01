@@ -490,10 +490,10 @@ class stupid(Handler):
 			message.html = u"""
 				Dear %s:<br>
 				<br>
-				We were told that you forgot your password. Don't feel embarrass 
+				We were told that you forgot your password. Don't feel embarrassed 
 				because you are not the first one.<br>
 				<br>
-				goto the link and reset your password: <a href=https://sciisirius,appspot.com/account/stupid_reset?code=%s>https://sciisirius,appspot.com/account/stupid_reset?code=%s</a><br>
+				goto the link and reset your password: <a href=https://sciisirius.appspot.com/account/stupid_reset?code=%s>https://sciisirius,appspot.com/account/stupid_reset?code=%s</a><br>
 				<br>
 				如果有任何問題記得回報我們。<br>
 				<br>
