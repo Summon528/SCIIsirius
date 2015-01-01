@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+  <div id="container" class="container">
+    <div class="form">
+      <form role="form" method="post">
+        <div class="form-group">
+          <label class="control-label">New password</label>
+          <input type="password" class="form-control" placeholder="Password" name="password">
+        </div>
+          <div class="form-group">
+          <label class="control-label">Verify password</label>
+          <input type="password" class="form-control" placeholder="Verify" name="verify">
+        </div>
+        {% if error == 1 %}
+          <div class="alert alert-danger" role="alert">錯誤</div>
+        {% endif  %}
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+{% endblock %}

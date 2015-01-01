@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body %}
+<body>
+  <div id="container" class="container">
+    <h1>Go check your mail!</h1>
+    <div class="row">
+      <div class="col-xs-6 col-md-3">
+        <a href="https://mail.google.com" target="_blank" class="thumbnail">
+          <img src="/picture/gmail.png" alt="Gmail">
+        </a>
+        <div class="caption">
+          <h3>Gmail</h3>
+        </div>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="https://outlook.com" target="_blank" class="thumbnail">
+          <img src="/picture/Outlook.jpg" alt="Hotmail">
+        </a>
+        <div class="caption">
+          <h3>Outlook(Hotmail)</h3>
+        </div>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="https://login.yahoo.com/config/mail?.intl=tw" target="_blank" class="thumbnail">
+          <img src="/picture/yahoo.png" alt="Yahoo">
+        </a>
+        <div class="caption">
+          <h3>Yahoo</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}
