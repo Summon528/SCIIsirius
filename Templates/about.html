@@ -13,8 +13,19 @@
 	祝您能夠順利的享用網頁所提供的服務！<br />
 	SR戰隊網站開發團隊 [SR]Summon、[SR]湖畔邊的萌雨 敬上
 	</p>
+	{% if success %}
+		<div class="alert alert-success" role="info">謝謝你！我們會盡快回復！</div>
+	{% else %}
+	<button class="btn-default">顯示/隱藏 聯絡表單</button>
+	<form method="post" style="display: none;">
+	標體：<input name="title">
+	{% if not logged_in %}
+	你的EAMIL：<input name="email">
+	{% endif %}
+	<textarea  id='summernote' name="content"></textarea>
+	<input type="submit">
+	</form>
 	<hr>
-
 	<h2>常見問題</h2>
 	Q1.為什麼我的天梯排名顯示錯誤？<br>
 	A1.可能的原因是因為你改過ID，只要登入後選擇帳戶設置-->更新battlenet資料即可。<br>
@@ -23,21 +34,13 @@
 	Q3.為什麼戰術討論區上傳的檔案，下載回來是Attachment.*？<br>
 	A3.系統並不支援中文(或其他非<a href="http://zh.wikipedia.org/wiki/ASCII" target="blank">ANSCII</a>字元)的檔案名稱，系統將自動將中文檔名改名，如果傳送的是英文檔名，就不會有這個問題。
 	<hr>
-	{% if success %}
-		<div class="alert alert-success" role="info">謝謝你！我們會盡快回復！</div>
-	{% else %}
-	<h2>聯絡我們<small>如果允許 我們將回信給你</small></h2>
-	<form method="post">
-	標體：<input name="title">
-	{% if not logged_in %}
-	你的EAMIL：<input name="email">
-	{% endif %}
-	<textarea  id='summernote' style='background-color: white;' name="content"></textarea>
-	<input type="submit">
 	 <script type="text/javascript">
     $(document).ready(function() {
       $('#summernote').summernote();
   });
+    $("button").click(function() {
+    $("form").slideToggle();
+});
   </script>
   {% endif %}
   </div>
