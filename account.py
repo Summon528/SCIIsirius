@@ -1,4 +1,5 @@
 # encoding: utf-8
+import uuid
 from base import *
 
 
@@ -471,6 +472,59 @@ class pass_config(Handler):
 		else:
 			self.render_error(403)
 
+class stupid(Handler):
+	def get(self):
+		self.render_nav("/account/stupid.html")
+	def post(self):
+		email = self.request.get("email")
+		account = db.GqlQuery("SELECT * FROM Account WHERE email = :1", email).get()
+		if not account or account.status<2:
+			self.render_nav("/account/stupid.html", error=1)
+		else:
+			verify_id = str(uuid.uuid4())
+			account.verify_id = verify_id
+			account.put()
+			message = mail.EmailMessage(sender="ClanSR天狼星戰隊 <SCIIClanSR@gmail.com>",
+	                            			subject="Reset Your password")
+			message.to = "%s<%s>" % (account.username,email)
+			message.html = u"""
+				Dear %s:<br>
+				<br>
+				We were told that you forgot your password. Don't feel embarrass 
+				because you are not the first one.<br>
+				<br>
+				goto the link and reset your password: <a href=https://sciisirius,appspot.com/account/stupid_reset?code=%s>https://sciisirius,appspot.com/account/stupid_reset?code=%s</a><br>
+				<br>
+				如果有任何問題記得回報我們。<br>
+				<br>
+				戰隊網編群敬上。
+				""" % (account.username,verify_id,verify_id)	
+			message.send()
+			self.render_nav("/account/stupid_success.html")
+
+class stupid_reset(Handler):
+	def get(self):
+		code = self.request.get("code")
+		self.render_nav("/account/stupid_reset.html", code = code)
+	def post(self):
+		PASS_RE=re.compile(r"^.{3,20}$")
+		code = self.request.get("code")
+		password = self.request.get("password")
+		verify = self.request.get("verify")
+		account = db.GqlQuery("SELECT * FROM Account WHERE verify_id = :1", code).get()
+		if account:
+			if account.status>2:
+				if (PASS_RE.match(password) and  password == verify ):
+					account.password=make_pw_hash( account.username,password)
+					account.put()
+					self.redirect("/account/login")
+				else:
+					self.render_nav("/account/stupid_reset.html", error=1)
+			else:
+				self.render_error(403)
+		else:
+			self.render_error(404)
+
 class notfound(Handler):
 	def get(self):
 		self.render_error(404)
@@ -492,5 +546,8 @@ application = webapp2.WSGIApplication([
     (r'/account/connect_again',connect_again),
     (r'/account/pass_config',pass_config),
     (r'/account/race_config',race_config),
+    (r'/account/stupid/',stupid),
+    (r'/account/stupid_reset/',stupid_reset),
     (r'/account/.*',notfound),
+    
 ], debug=True)

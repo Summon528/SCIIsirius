@@ -17,7 +17,7 @@
 		<div class="alert alert-success" role="info">謝謝你！我們會盡快回復！</div>
 	{% else %}
 	<button class="btn-default">顯示/隱藏 聯絡表單</button>
-	<form method="post" style="display: none;">
+	<form id="contact" method="post" style="display: none;">
 	標體：<input name="title">
 	{% if not logged_in %}
 	你的EAMIL：<input name="email">
@@ -39,7 +39,7 @@
       $('#summernote').summernote();
   });
     $("button").click(function() {
-    $("form").slideToggle();
+    $("#contact").slideToggle();
 });
   </script>
   {% endif %}
