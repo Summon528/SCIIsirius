@@ -1,5 +1,6 @@
 # encoding: utf-8
 from google.appengine.ext.webapp import blobstore_handlers
+import blobstore
 from base import *
 
 class admin(Handler):
