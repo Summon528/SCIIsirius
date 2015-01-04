@@ -1,4 +1,5 @@
 # encoding: utf-8
+import cgi
 from operator import itemgetter
 from base import *
 
