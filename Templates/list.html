@@ -12,6 +12,7 @@
   <h1> 隊員名單 </h1>
   	 <table class="table">
   		<tr>
+        <td> </td>
   			<td>遊戲ID</td>
   			<td>帳號</td>
   			<td>職位</td>
@@ -31,6 +32,7 @@
   	    {% else %}
   	    class="random"
   	    {%endif%}>
+        <td>{{cnt}}</td>
 		    <td><a href="/account/profile?uid={{i.username}}">{{i.game_name}}</a></td> 
 		    <td>{{i.username}}</td>
 		    <td>{%  if i.status == 0 %}未驗證{%endif%}
@@ -49,7 +51,6 @@
 	    {% endif %}
   	    {%endfor%}
   	</table>
-    There are {{cnt}} members in ClanSR.<br>
   </div>
 </body>
 {% endblock %}
