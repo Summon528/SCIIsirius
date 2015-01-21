@@ -17,7 +17,9 @@
   			<td>職位</td>
   			<td>種族</td>
   		</tr>
+      {% set cnt=0 %}
   	    {% for i in accounts %}
+        {% set cnt=cnt+1 %}
   	    {% if i.status>=3 %}
   	    <tr 
   	    {% if i.race=="TERRAN" %}
@@ -47,6 +49,7 @@
 	    {% endif %}
   	    {%endfor%}
   	</table>
+    There are {{cnt}} members in ClanSR.<br>
   </div>
 </body>
 {% endblock %}

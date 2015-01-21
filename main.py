@@ -324,7 +324,7 @@ class event(Handler):
 
 class list(Handler):
 	def get(self):
-		accounts =  db.GqlQuery ("SELECT * FROM Account order by status desc")
+		accounts =  db.GqlQuery ("SELECT * FROM Account order by game_name")
 		self.render_nav("list.html", accounts = accounts)
 
 class stream(Handler):
